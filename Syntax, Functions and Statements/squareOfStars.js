@@ -1,4 +1,4 @@
-function squareOfStars(input) {
+function sqaureOfStars(input) {
   let result = "";
   for (let i = 0; i < input; i++) {
     for (let y = 0; y < input; y++) {
@@ -8,4 +8,5 @@ function squareOfStars(input) {
   }
   console.log(result);
 }
-squareOfStars(10);
+
+sqaureOfStars(5);

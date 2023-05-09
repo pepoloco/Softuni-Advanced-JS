@@ -6,7 +6,7 @@ function aggregateElements(input) {
   input.forEach((element, i) => {
     sumOfAllElements += element;
     sumOfInverseValues += 1 / element;
-    concatedString += String(element);
+    concatedString += element;
   });
   console.log(sumOfAllElements);
   console.log(sumOfInverseValues);
