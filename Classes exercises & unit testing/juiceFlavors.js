@@ -13,11 +13,11 @@ function solve(input) {
 
     for (let [juice, quantity] of Object.entries(juices)) {
       let count = 0;
-      if (quantity > 1000) {
-        while (quantity >= 1000) {
-          count++;
-          quantity -= 1000;
-        }
+      while (quantity >= 1000) {
+        count++;
+        quantity -= 1000;
+      }
+      if (count > 0) {
         bottles[juice] = count;
       }
     }
@@ -30,3 +30,18 @@ function solve(input) {
     }
   }
 }
+solve([
+  "Orange => 2000",
+  "Peach => 1432",
+  "Banana => 450",
+  "Peach => 600",
+  "Strawberry => 549",
+]);
+solve([
+  "Kiwi => 234",
+  "Pear => 2345",
+  "Watermelon => 3456",
+  "Kiwi => 4567",
+  "Pear => 5678",
+  "Watermelon => 6789",
+]);

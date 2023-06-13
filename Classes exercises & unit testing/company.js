@@ -2,11 +2,8 @@ class Company {
   constructor() {
     this.departments = {};
   }
-  addEmployee(...args) {
-  }
-
+  addEmployee(...args) {}
 }
-
 
 let c = new Company();
 c.addEmployee("Stanimir", 2000, "engineer", "Construction");
