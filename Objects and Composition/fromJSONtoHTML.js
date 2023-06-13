@@ -2,21 +2,21 @@ function solve(input) {
   let arr = JSON.parse(input);
   let output = "<table>";
   let firstObj = arr[0];
-  output += "<tr>\n";
+
+  output += '\n<tr>'
+
   for (const key in firstObj) {
     output += `<th>${key}</th>`;
   }
-  output += "</tr>\n";
-
-  output += "</tr>\n";
+  output += "</tr>";
   for (const obj of arr) {
+    output += "\n<tr>";
     for (const key in firstObj) {
       output += `<td>${obj[key]}</td>`;
     }
-    output += "</tr>\n";
+    output += "</tr>";
   }
-  output += "</table>";
-
+  output += "\n</table>";
   console.log(output);
 }
 solve(`[{"Name":"Stamat",

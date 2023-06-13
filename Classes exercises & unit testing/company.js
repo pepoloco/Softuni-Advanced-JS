@@ -3,16 +3,6 @@ class Company {
     this.departments = {};
   }
   addEmployee(...args) {
-    if ((name || salary || position || department) === "string") {
-      throw new Error("Invalid input!");
-    } else if (salary < 0) {
-      throw new Error("Invalid input!");
-    } else {
-      departments[name] = name;
-      departments[salary] = +salary;
-      departments[position] = position;
-      departments[department] = department;
-    }
   }
 
 }

@@ -9,8 +9,8 @@ function stringLength(...strings) {
   if (strings.length > 0) {
     averageLength = sumLength / strings.length;
   }
-  console.log("Total length:", sumLength);
-  console.log("Average length:", Math.floor(averageLength));
+  console.log(sumLength);
+  console.log(Math.floor(averageLength));
 }
 
 stringLength("chocolate", "ice cream", "cake");
