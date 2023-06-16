@@ -1,5 +1,5 @@
-function createFormatter(separator, symbol, symbolFirst, formater) {
-  return (sum) => formater(separator, symbol, symbolFirst, sum);
+function createFormatter(separator, symbol, symbolFirst, formatter) {
+  return (sum) => formatter(separator, symbol, symbolFirst, sum);
 }
 
 function currencyFormatter(separator, symbol, symbolFirst, value) {
