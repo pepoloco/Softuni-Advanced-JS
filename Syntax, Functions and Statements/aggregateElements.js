@@ -1,15 +1,18 @@
-function aggregateElements(input) {
-  let sumOfAllElements = 0;
-  let sumOfInverseValues = 0;
-  let concatedString = "";
-
-  input.forEach((element, i) => {
-    sumOfAllElements += element;
-    sumOfInverseValues += 1 / element;
-    concatedString += element;
+function solve(input) {
+  let sum = 0;
+  for (const el of input) {
+    sum += Number(el);
+  }
+  let inversedSum = 0;
+  input.forEach((element) => {
+    inversedSum += 1 / Number(element);
   });
-  console.log(sumOfAllElements);
-  console.log(sumOfInverseValues);
-  console.log(concatedString);
+  let concated = "";
+  input.forEach((element) => {
+    concated += element;
+  });
+  console.log(sum);
+  console.log(inversedSum);
+  console.log(concated);
 }
-aggregateElements([1, 2, 3]);
+solve([1, 2, 3]);

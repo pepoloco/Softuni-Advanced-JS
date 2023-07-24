@@ -1,89 +1,82 @@
-function roadRadar(speed, area) {
-  /* On the motorway, the limit is 130 km/h
- On the interstate, the limit is 90 km/h
- In the city, the limit is 50 km/h
- Within a residential area, the limit is 20 km/h
-*/
+function solve(speed, area) {
   let status = "";
-  let speedLimit = 0;
+  const motorwayLimit = 130;
+  const interstateLimit = 90;
+  const cityLimit = 50;
+  const residentialArea = 20;
   let difference = 0;
   switch (area) {
     case "motorway":
-      speedLimit = 130;
-      if (speed <= 130) {
-        console.log(`Driving ${speed} km/h in a ${speedLimit} zone`);
-      } else {
-        difference = speed - speedLimit;
+      if (speed > motorwayLimit) {
+        difference = Math.abs(motorwayLimit - speed);
         if (difference <= 20) {
           status = "speeding";
-        } else if (difference > 20 && difference <= 40) {
+        } else if (difference <= 40) {
           status = "excessive speeding";
         } else {
           status = "reckless driving";
         }
         console.log(
-          `The speed is ${difference} km/h faster than the allowed speed of ${speedLimit} - ${status}`
+          `The speed is ${difference} km/h faster than the allowed speed of ${motorwayLimit} - ${status}`
         );
+      } else {
+        console.log(`Driving ${speed} km/h in a ${motorwayLimit} zone`);
       }
       break;
     case "interstate":
-      speedLimit = 90;
-      if (speed <= 90) {
-        console.log(`Driving ${speed} km/h in a ${speedLimit} zone`);
-      } else {
-        difference = speed - speedLimit;
+      if (speed > interstateLimit) {
+        difference = Math.abs(interstateLimit - speed);
         if (difference <= 20) {
           status = "speeding";
-        } else if (difference > 20 && difference <= 40) {
+        } else if (difference <= 40) {
           status = "excessive speeding";
         } else {
           status = "reckless driving";
         }
         console.log(
-          `The speed is ${difference} km/h faster than the allowed speed of ${speedLimit} - ${status}`
+          `The speed is ${difference} km/h faster than the allowed speed of ${interstateLimit} - ${status}`
         );
+      } else {
+        console.log(`Driving ${speed} km/h in a ${interstateLimit} zone`);
       }
       break;
     case "city":
-      speedLimit = 50;
-      if (speed <= 50) {
-        console.log(`Driving ${speed} km/h in a ${speedLimit} zone`);
-      } else {
-        difference = speed - speedLimit;
+      if (speed > cityLimit) {
+        difference = Math.abs(cityLimit - speed);
         if (difference <= 20) {
           status = "speeding";
-        } else if (difference > 20 && difference <= 40) {
+        } else if (difference <= 40) {
           status = "excessive speeding";
         } else {
           status = "reckless driving";
         }
         console.log(
-          `The speed is ${difference} km/h faster than the allowed speed of ${speedLimit} - ${status}`
+          `The speed is ${difference} km/h faster than the allowed speed of ${cityLimit} - ${status}`
         );
+      } else {
+        console.log(`Driving ${speed} km/h in a ${cityLimit} zone`);
       }
       break;
     case "residential":
-      speedLimit = 20;
-      if (speed <= 20) {
-        console.log(`Driving ${speed} km/h in a ${speedLimit} zone`);
-      } else {
-        difference = speed - speedLimit;
+      if (speed > residentialArea) {
+        difference = Math.abs(residentialArea - speed);
         if (difference <= 20) {
           status = "speeding";
-        } else if (difference > 20 && difference <= 40) {
+        } else if (difference <= 40) {
           status = "excessive speeding";
         } else {
           status = "reckless driving";
         }
         console.log(
-          `The speed is ${difference} km/h faster than the allowed speed of ${speedLimit} - ${status}`
+          `The speed is ${difference} km/h faster than the allowed speed of ${residentialArea} - ${status}`
         );
+      } else {
+        console.log(`Driving ${speed} km/h in a ${residentialArea} zone`);
       }
       break;
-      20;
   }
 }
-roadRadar(40, "city");
-roadRadar(21, "residential");
-roadRadar(120, "interstate");
-roadRadar(200, "motorway");
+solve(40, "city");
+solve(21, "residential");
+solve(120, "interstate");
+solve(200, "motorway");

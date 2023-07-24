@@ -23,4 +23,3 @@ function mathOperation(...args) {
   }
   console.log(result);
 }
-mathOperation(3, 5.5, "**");

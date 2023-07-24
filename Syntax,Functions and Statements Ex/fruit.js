@@ -1,9 +1,15 @@
-function calc(...input) {
-  let [fruit, weight, price] = input;
+function solve(...input) {
+  //
+  const [fruit, weight, pricePerKg] = input;
   const weightToKg = weight / 1000;
-  const money = price * weightToKg;
-  return `I need $${money.toFixed(2)} to buy ${weightToKg.toFixed(
-    2
-  )} kilograms ${fruit}.`;
+  let money = 0;
+  money = weightToKg * pricePerKg;
+
+  console.log(
+    `I need $${money.toFixed(2)} to buy ${weightToKg.toFixed(
+      2
+    )} kilograms ${fruit}.`
+  );
 }
-console.log(calc("orange", 2500, 1.8));
+
+solve("orange", 2500, 1.8);

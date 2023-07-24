@@ -1,16 +1,10 @@
-function stringLength(...strings) {
-  let sumLength = 0;
-  let averageLength = 0;
-  
-  for (const str of strings) {
-    sumLength += str.length;
-  }
-
-  if (strings.length > 0) {
-    averageLength = sumLength / strings.length;
-  }
-  console.log(sumLength);
-  console.log(Math.floor(averageLength));
+function solve(...strings) {
+  const sumOfStrings = strings.reduce(
+    (total, string) => total + string.length,
+    0
+  );
+  const averageLength = Math.trunc(sumOfStrings / 3);
+  console.log(sumOfStrings);
+  console.log(averageLength);
 }
-
-stringLength("chocolate", "ice cream", "cake");
+solve("chocolate", "ice cream", "cake");

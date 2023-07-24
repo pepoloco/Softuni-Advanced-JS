@@ -1,49 +1,18 @@
-//forEach
-// function sameNum(...number) {
-//   let numToArr = number.toString().split("");
-//   let firstDigit = numToArr[0];
-//   let allSame = true;
-
-//   numToArr.forEach((digit) => {
-//     if (digit !== firstDigit) {
-//       allSame = false;
-//     }
-//   });
-
-//   console.log(allSame);
-// }
-
-// sameNum(2222222);
-// sameNum(1234);
-//filer
-function sameNum(number) {
-  let numToArr = number.toString().split("");
-  let firstDigit = numToArr[0];
-  let allSame = numToArr.filter((digit) => digit !== firstDigit).length === 0;
+function solve(input) {
   let sum = 0;
-  for (const el of numToArr) {
-    sum += +el;
+  const numStr = input.toString().split("");
+  const firstDigit = numStr[0];
+  const check = numStr.some((x) => x !== firstDigit);
+  sum = numStr.reduce((acc, cur) => {
+    return acc + Number(cur);
+  }, 0);
+  if (check === true) {
+    console.log(false);
+    console.log(sum);
+  } else {
+    console.log(true);
+    console.log(sum);
   }
-
-  console.log(allSame);
-  console.log(sum);
 }
-
-sameNum(2222222);
-sameNum(1234);
-//reduce
-// function sameNum(number) {
-//   let numToArr = number.toString().split("");
-//   let allSame = numToArr.reduce((acc, digit) => {
-//     if (digit !== acc) {
-//       return false;
-//     } else {
-//       return acc;
-//     }
-//   }, numToArr[0]);
-
-//   console.log(allSame);
-// }
-
-// sameNum(2222222);
-// sameNum(1234);
+solve(2222222);
+solve(1234);

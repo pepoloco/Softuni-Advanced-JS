@@ -1,12 +1,12 @@
-function sqaureOfStars(input) {
+function solve(argument) {
   let result = "";
-  for (let i = 0; i < input; i++) {
-    for (let y = 0; y < input; y++) {
+  for (let i = 0; i < argument; i++) {
+    for (let y = 0; y < argument; y++) {
       result += " *";
     }
     result += "\n";
   }
   console.log(result);
 }
-
-sqaureOfStars(5);
+solve(1);
+solve(7);

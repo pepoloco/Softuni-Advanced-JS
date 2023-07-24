@@ -1,13 +1,7 @@
-function daysInAMonth(month, year) {
-  return new Date(year, month, 0).getDate();
+function solve(month, year) {
+  const day = new Date(year, month, 1);
+  const lastDayOfMonth = new Date(day.getTime() - 1);
+  console.log(lastDayOfMonth.getDate());
 }
-console.log(daysInAMonth(1, 2012));
-
-/*
-const dayGet = (...inputs) => {
-  let day = 0;
-  let [month, year] = inputs;
-  return new Date(year, month, 0).getDate();
-};
-console.log(dayGet(1, 2012));
-*/
+solve(1, 2012);
+solve(2, 2021);

@@ -1,8 +1,6 @@
-function echoFunction(input) {
-    let lengthOfString = input.length;
-    console.log(lengthOfString);
-    console.log(input);
-
-
+function solve(string) {
+  const copyOfString = string.slice();
+  console.log(copyOfString.length);
+  console.log(copyOfString);
 }
-echoFunction("Hello, JavaScript!");
+solve("Hello, JavaScript!");

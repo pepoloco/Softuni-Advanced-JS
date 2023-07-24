@@ -1,11 +1,18 @@
-function previousDay(year, month, day) {
-  let curDay = new Date(year, month - 1, day);
-  curDay.setDate(curDay.getDate() - 1);
-  let newYear = curDay.getFullYear();
-  let newMonth = curDay.getMonth() + 1;
-  let newDate = curDay.getDate();
-
-  return `${newYear}-${newMonth}-${newDate}`;
+function solve(year, month, day) {
+  if (day === 1) {
+    const date = new Date(year, month - 1, 0);
+    const getYear = date.getFullYear();
+    const getMonth = date.getMonth() + 1;
+    const getDay = date.getDate();
+    console.log(`${getYear}-${getMonth}-${getDay}`);
+  } else {
+    const date = new Date(year, month - 1, day - 1);
+    const getYear = date.getFullYear();
+    const getMonth = date.getMonth() + 1;
+    const getDay = date.getDate();
+    console.log(`${getYear}-${getMonth}-${getDay}`);
+  }
 }
-console.log(previousDay(2016, 9, 30));
-console.log(previousDay(2016, 1, 1));
+solve(2016, 9, 30);
+solve(2015, 5, 10);
+solve(2015, 12, 31);

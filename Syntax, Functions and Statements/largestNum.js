@@ -1,12 +1,8 @@
-function largestNum(...numbers) {
-  let largest = [numbers[0]];
-  for (const el of numbers) {
-    if (largest < el) {
-      largest = el;
-    }
-  }
-
-  return `The largest number is ${largest}.`;
+function solve(...numbers) {
+  const largestNum = Math.max(...numbers);
+  console.log(`The largest number is ${largestNum}.`);
 }
-console.log(largestNum(5, -3, 16));
-console.log(largestNum(-3, -5, -22.5));
+solve(5, -3, 16);
+solve(-3, -5, -22.5);
+/*Print the following text
+on the console: `The largest number is {number}.`*/
