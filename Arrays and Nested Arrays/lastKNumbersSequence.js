@@ -1,16 +1,8 @@
-function generateSequence(n, k) {
-  let sequence = [1];
+function solve(n, k) {
   for (let i = 1; i < n; i++) {
-    let sum = 0;
-
-    for (let j = i - 1; j >= i - k && j >= 0; j--) {
-      sum += sequence[j];
-    }
-
-    sequence.push(sum);
+    const sum = i + i;
+    console.log(sum);
   }
-
-  return sequence;
 }
-
-console.log(generateSequence(6, 3));
+solve(6, 3);
+solve(8, 2);
