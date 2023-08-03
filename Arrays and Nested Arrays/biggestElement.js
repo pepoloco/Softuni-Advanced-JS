@@ -1,22 +1,16 @@
-function solve(input) {
-    let biggestNum = 0
+function solve(matrix) {
+    let biggestNum = matrix[0][0];
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
+            if (matrix[i][j] > biggestNum) {
+                biggestNum = matrix[i][j];
+            }
+        }
+    }
 
-    console.log(...input);
-
-
-    // for (let x = 0; x < arr1.length; x++) {
-    //     const num1 = arr1[x];
-    //     for (let y = x + 1; y < arr1.length; y++) {
-    //         const num2 = arr2[y]
-    //         if (num1 > num2) {
-    //             biggestNum = num1
-    //         } else {
-    //             biggestNum = num2
-    //         }
-    //     }
-    // }
-    // return biggestNum;
+    return biggestNum;
 }
+
 solve([[20, 50, 10], [8, 33, 145]])
 solve([[3, 5, 7, 12],
 [-1, 4, 33, 2],
