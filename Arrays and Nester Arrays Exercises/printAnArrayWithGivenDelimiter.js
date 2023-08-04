@@ -1,5 +1,15 @@
-function solve(array, delimiter) {
-  let result = array.join(delimiter);
-  console.log(result);
+function solve(arr, delimiter) {
+
+  let arrCopy = arr.slice();
+
+  console.log(arrCopy.join(delimiter));
+
+
 }
-solve(["One", "Two", "Three", "Four", "Five"], "-");
+solve(['One',
+  'Two',
+  'Three',
+  'Four',
+  'Five'],
+  '-'
+)
