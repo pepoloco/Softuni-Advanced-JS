@@ -1,15 +1,14 @@
-function solve(library, orders) {
+function factory(library, orders) {
   let results = [];
   for (const order of orders) {
     let obj = Object.assign({}, order.template);
     for (const method of order.parts) {
       obj[method] = library[method];
     }
-    results.push(obj);
+    results.push(obj)
   }
-return results;
+  return results;
 }
-
 const library = {
   print: function () {
     console.log(`${this.name} is printing a page`);
@@ -23,21 +22,21 @@ const library = {
 };
 const orders = [
   {
-    template: { name: "ACME Printer" },
-    parts: ["print"],
+    template: { name: 'ACME Printer' },
+    parts: ['print']
   },
   {
-    template: { name: "Initech Scanner" },
-    parts: ["scan"],
+    template: { name: 'Initech Scanner' },
+    parts: ['scan']
   },
   {
-    template: { name: "ComTron Copier" },
-    parts: ["scan", "print"],
+    template: { name: 'ComTron Copier' },
+    parts: ['scan', 'print']
   },
   {
-    template: { name: "BoomBox Stereo" },
-    parts: ["play"],
-  },
+    template: { name: 'BoomBox Stereo' },
+    parts: ['play']
+  }
 ];
-const products = solve(library, orders);
+const products = factory(library, orders);
 console.log(products);
