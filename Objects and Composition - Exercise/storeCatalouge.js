@@ -1,28 +1,24 @@
 function solve(input) {
-  let storage = {};
-  input.forEach((element) => {
-    let [productName, productPrice] = element.split(":");
-    storage[productName] = +productPrice;
-  });
+  let products = []
+  for (const stores of input) {
+    let [productName, productPrice] = stores.split(' : ')
+    let product = { name: productName, price: productPrice };
+    products.push(product)
+  }
+  products.sort((a, b) => a.name.localeCompare(b.name))
+  let currentFirstChar = '';
+  for (const product of products) {
+    const firstChar = product.name[0];
 
-  let sortedProducts = Object.entries(storage).sort(
-    ([productNameA], [productNameB]) =>
-      productNameA.localeCompare(productNameB)
-  );
-
-  let currentInitial = "";
-  sortedProducts.forEach(([productName, productPrice]) => {
-    let initial = productName[0].toUpperCase();
-    if (initial !== currentInitial) {
-      console.log(initial);
-      currentInitial = initial;
+    if (firstChar !== currentFirstChar) {
+      currentFirstChar = firstChar;
+      console.log(firstChar);
     }
-    console.log(`  ${productName.trim()}: ${productPrice}`);
-  });
+    console.log(`${product.name}: ${product.price}`);
+  }
 }
-
 solve([
-  "Baanna:2",
+  "Baanna : 2",
   "Rubic's Cube : 5",
   "Raspberry P : 4999",
   "Rolex : 100000",

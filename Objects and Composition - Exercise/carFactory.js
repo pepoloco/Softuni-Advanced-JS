@@ -1,59 +1,49 @@
-function solve(input) {
-  let car = { ...input };
-
+function solve(car) {
+  let carFactory = {};
+  carFactory.model = car.model
   if (car.power <= 90) {
-    delete car.power;
-    car.engine = {
-      power: 90,
-      volume: 1800,
-    };
-  } else if (car.power <= 120) {
-    delete car.power;
-    car.engine = {
-      power: 120,
-      volume: 2400,
-    };
-  } else if (car.power <= 200) {
-    delete car.power;
-    car.engine = {
-      power: 200,
-      volume: 3500,
+    carFactory.engine = {
+      power: car.power,
+      volume: 1800
     };
   }
-
-  if (car.carriage === "hatchback") {
-    car.carriage = {
-      type: "hatchback",
-      color: car.color,
-    };
-    delete car.color;
-  } else if (car.carriage === "coupe") {
-    car.carriage = {
-      type: "coupe",
-      color: car.color,
-    };
-    delete car.color;
+  if (car.power > 90 && car.power <= 120) {
+    carFactory.engine = {
+      power: car.power,
+      volume: 2400
+    }
   }
-
-  if (!(car.wheelsize % 2 === 0)) {
+  if (car.power > 120 && car.power <= 200) {
+    carFactory.engine = {
+      power: car.power,
+      volume: 3500
+    }
+  }
+  if (car.carriage = 'hatchback') {
+    carFactory.carriage = {
+      type: car.carriage,
+      color: car.color
+    }
+  }
+  else if (car.carriage = 'coupe') {
+    carFactory.carriage = {
+      type: car.carriage,
+      color: car.color
+    }
+  }
+  if (car.wheelsize % 2 !== 0) {
     const size = car.wheelsize;
-    car.wheels = [size, size, size, size];
-    delete car.wheelsize;
+    carFactory.wheelsize = [size, size, size, size]
   } else {
     const size = car.wheelsize - 1;
-    car.wheels = [size, size, size, size];
-    delete car.wheelsize;
+    carFactory.wheelsize = [size, size, size, size]
   }
-
-  return car;
+  console.log(carFactory);
 }
-
-const result = solve({
-  model: "VW Golf II",
+solve(obj = {
+  model: 'VW Golf II',
   power: 90,
-  color: "blue",
-  carriage: "hatchback",
-  wheelsize: 14,
-});
-
-console.log(result);
+  color: 'blue',
+  carriage: 'hatchback',
+  wheelsize: 14
+})

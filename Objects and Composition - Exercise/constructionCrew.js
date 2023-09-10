@@ -1,12 +1,14 @@
 function solve(object) {
-  let worker = Object.assign({}, object);
-  if (worker.dizziness){
-    worker.levelOfHydrated += 0.1 * worker.weight * worker.experience;
-    worker.dizziness = false;
-    console.log(worker);
-    return worker;
+  const obj = { ...object };
+  if (obj.dizziness) {
+    obj.levelOfHydrated += 0.1 * obj.weight * obj.experience;
+    console.log(obj);
+    obj.dizziness = false;
+    return obj;
   }
-  console.log(worker);
-  return worker;
+  console.log(obj);
+  return obj;
+
+
 }
 solve({ weight: 80, experience: 1, levelOfHydrated: 0, dizziness: true });

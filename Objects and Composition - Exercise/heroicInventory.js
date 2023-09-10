@@ -1,18 +1,15 @@
 function solve(input) {
-  let inputs = input.shift();
-  let result = [];
-  while (inputs) {
-    let [heroName, lvl, item] = inputs.split(" / ");
-    let hero = {};
-    (hero.name = heroName),
-      (hero.level = +lvl),
-      (hero.items = item.split(", "));
+  const result = [];
 
-    result.push(hero);
-    inputs = input.shift();
-  }
-  let toJSON = JSON.stringify(result);
-  console.log(toJSON);
+  input.forEach((element) => {
+    const obj = {};
+    const heroDataArr = element.split(' / ')
+    obj.name = heroDataArr[0];
+    obj.level = +heroDataArr[1];
+    obj.item = [heroDataArr[2].split(', ')]
+    result.push(obj)
+  });
+  return JSON.stringify(result)
 }
 solve([
   "Isacc / 25 / Apple, GravityGun",
