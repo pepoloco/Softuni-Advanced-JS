@@ -1,18 +1,18 @@
-function createRectangle(width, height, color) {
+function solve(width, height, color) {
+
   let rectangle = {
     width: width,
     height: height,
     color: color.charAt(0).toUpperCase() + color.slice(1),
-    calcArea: function () {
+    calculateArea: function () {
       return this.width * this.height;
     },
-  };
+  }
+  return rectangle
 
-  return rectangle;
 }
-
-let rect = createRectangle(4, 5, "red");
-console.log(rect.width);
-console.log(rect.height);
-console.log(rect.color);
-console.log(rect.calcArea());
+let rectangle = solve(4, 5, 'green');
+console.log(rectangle.width);
+console.log(rectangle.height);
+console.log(rectangle.color);
+console.log(rectangle.calculateArea());
