@@ -1,7 +1,6 @@
 function extractText() {
-  let lis = document.querySelectorAll("ul#items li");
-  let textArea = document.querySelector("#result");
-  for (let node of lis) {
-    textArea.value += node.textContent + "\n";
-  }
+  let lis = document.getElementById('items').textContent;
+  let textArea = document.getElementById('result');
+  let liValue = Array.from(lis).join('');
+  textArea.textContent = liValue
 }
