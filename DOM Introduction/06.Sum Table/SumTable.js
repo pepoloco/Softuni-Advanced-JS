@@ -1,10 +1,12 @@
 function sumTable() {
-  let values = document.querySelectorAll("table tr");
   let total = 0;
-  for (let i = 1; i < values.length; i++) {
-    let cols = values[i].children;
-    let cost = cols[cols.length - 1].textContent;
-    total += Number(cost);
+  let tableRows = document.querySelectorAll('table tr');
+
+  for (let i = 1; i < tableRows.length - 1; i += 1) {
+    let row = tableRows[i];
+    let cellValue = row.children[1].textContent;
+    total += Number(cellValue);
   }
-  document.getElementById("sum").textContent = total;
+
+  document.getElementById('sum').textContent = total
 }
