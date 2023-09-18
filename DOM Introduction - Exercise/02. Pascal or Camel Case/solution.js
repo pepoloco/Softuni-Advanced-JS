@@ -1,23 +1,26 @@
 function solve() {
-  let textToModify = document.getElementById("text").value.toLowerCase();
-  let currentText = document.getElementById("naming-convention").value;
-  let result = document.getElementById("result");
+  let firstParam = document.getElementById('text').value.toLowerCase();
+  let secondParam = document.getElementById('naming-convention').value;
+  let result = document.getElementById('result')
 
-  if (currentText !== "Camel Case" && currentText !== "Pascal Case") {
-    result.textContent = "Error!";
+  if (secondParam !== 'Camel Case' && secondParam !== 'Pascal Case') {
+    result.textContent = 'Error!';
     return;
   }
-  const arrayOfStrings = textToModify.split(" ");
-  let output = "";
-  let startingPoint = 0;
 
-  if (currentText === "Camel Case") {
-    output += arrayOfStrings[0];
-    startingPoint = 1; //
+  const arrOfStr = firstParam.split(' ');
+  let output = '';
+  let startingPoint = 0
+
+  if (secondParam === 'Camel Case') {
+    output += arrOfStr[0];
+    startingPoint = 1;
   }
-  for (let i = 0; i < arrayOfStrings.length; i++) {
-    const curWord = arrayOfStrings[i];
+  for (let i = startingPoint; i < arrOfStr.length; i++) {
+    const curWord = arrOfStr[i];
     output += curWord[0].toUpperCase() + curWord.slice(1, curWord.length);
+
     result.textContent = output;
   }
+
 }
