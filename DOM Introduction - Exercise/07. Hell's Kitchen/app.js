@@ -1,65 +1,62 @@
 function solve() {
   document.querySelector("#btnSend").addEventListener("click", onClick);
-
+  let input = document.querySelector("#inputs>textarea");
+  let bestRestaurantResult = document.querySelector("#bestRestaurant>p");
+  let workersResult = document.querySelector("#workers>p");
   function onClick() {
-    let arr = JSON.parse(document.querySelector("#inputs textarea").value);
-    let objWinner = findBestRestaurant(arr);
-    document.querySelector("#bestRestaurant>p").textContent =
-      getMsgRest(objWinner);
-    document.querySelector("#workers>p").textContent = getMsgEmp(
-      objWinner.workers
-    );
-  }
+    let arr = JSON.parse(input.value);
 
-  function getMsgRest(objWinner) {
-    return `Name: ${
-      objWinner.name
-    } Average Salary: ${objWinner.avgSalary.toFixed(
-      2
-    )} Best Salary: ${objWinner.maxSalary.toFixed(2)}`;
-  }
+    let restaurants = {};
 
-  function getMsgEmp(workers) {
-    return workers
-      .map((w) => `Name: ${w.worker} With Salary: ${w.salary}`)
-      .join(" ");
-  }
+    arr.forEach((element) => {
+      let tokens = element.split(" - ");
+      let name = tokens[0];
+      let workersArr = tokens[1].split(", ");
+      let workers = [];
 
-  function findBestRestaurant(arr) {
-    let resultRestaurants = arr.reduce((acc, e) => {
-      let [restaurant, ...workers] = e.split(/(?: - )|(?:, )/g);
-      workers = workers.map((w) => {
-        let [worker, salary] = w.split(" ");
-        return {
-          worker: worker,
-          salary: +salary,
-        };
-      });
-      let foundRestraunt = acc.find((r) => r.name === restaurant);
-      if (foundRestraunt) {
-        foundRestraunt.workers = foundRestraunt.workers.concat(workers);
-      } else {
-        acc.push({
-          name: restaurant,
-          workers: workers,
-        });
+      for (let worker of workersArr) {
+        let workerToken = worker.split(" ");
+        let salary = Number(workerToken[1]);
+        workers.push({ name: workerToken[0], salary });
       }
-      return acc;
-    }, []);
+      if (restaurants[name]) {
+        workers = workers.concat(restaurants[name].workers);
+      }
+      workers.sort((worker1, worker2) => worker2.salary - worker1.salary);
+      let bestSalary = workers[0].salary;
+      let averageSalary =
+        workers.reduce((sum, worker) => sum + worker.salary, 0) /
+        workers.length;
 
-    resultRestaurants.forEach((el, idx) => {
-      el.inputOrder = idx;
-      el.avgSalary =
-        el.workers.reduce((acc, el) => acc + el.salary, 0) / el.workers.length;
-      el.maxSalary = Math.max(...el.workers.map((w) => w.salary));
+      restaurants[name] = {
+        workers,
+        averageSalary,
+        bestSalary,
+      };
     });
+    let bestRestaurantSalary = 0;
+    let bestRestaurant = undefined;
 
-    resultRestaurants.sort(
-      (a, b) => b.avgSalary - a.avgSalary || a.inputOrder - b.inputOrder
-    );
-    let bestRestaurant = resultRestaurants[0];
-    bestRestaurant.workers.sort((a, b) => b.salary - a.salary);
+    for (let name in restaurants) {
+      if (restaurants[name].averageSalary > bestRestaurantSalary) {
+        bestRestaurant = {
+          name,
+          workers: restaurants[name].workers,
+          bestSalary: restaurants[name].bestSalary,
+          averageSalary: restaurants[name].averageSalary,
+        };
+        bestRestaurantSalary = restaurants[name].averageSalary;
+      }
+    }
+    bestRestaurantResult.textContent = `Name: ${bestRestaurant.name
+      } Average Salary: ${bestRestaurant.averageSalary.toFixed(
+        2
+      )} Best Salary: ${bestRestaurant.bestSalary.toFixed(2)}`;
+    let result = [];
 
-    return bestRestaurant;
+    bestRestaurant.workers.forEach((worker) => {
+      result.push(`Name: ${worker.name} With Salary: ${worker.salary}`);
+    });
+    workersResult.textContent = result.join(" ");
   }
 }
