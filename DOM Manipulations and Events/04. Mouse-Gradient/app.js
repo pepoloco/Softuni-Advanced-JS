@@ -1,18 +1,16 @@
 function attachGradientEvents() {
-  let gradient = document.getElementById("gradient");
-  gradient.addEventListener("mousemove", hoverHandler);
-  gradient.addEventListener("mouseout", clearHandler);
-  let result = document.getElementById("result");
+  let result = document.getElementById('result');
+  let gradient = document.getElementById('gradient');
+  gradient.addEventListener('mousemove', onHover);
+  gradient.addEventListener('mouseout', onExit);
 
-  function hoverHandler(event) {
-    console.dir(event);
-    let offsetX = event.offsetX;
-    let element = event.target;
-    let elementX = element.clientWidth;
-    let percentX = Math.trunc((offsetX / elementX) * 100) + "%";
-    result.textContent = percentX;
+  function onHover(event) {
+    let offSet = event.offsetX;
+    let width = event.target.clientWidth;
+    let percentX = Math.trunc((offSet / width) * 100) + "%";
+    result.textContent = percentX
   }
-  function clearHandler() {
-    result.textContent = "";
+  function onExit() {
+    result.textContent = ""
   }
 }
