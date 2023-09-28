@@ -1,30 +1,32 @@
 function solve() {
-  let addButtons = document.querySelectorAll(".add-product");
-  let addButtonsArr = Array.from(addButtons);
-  let textArea = document.querySelector("textarea");
-  let totalSum = 0;
+
+  let textArea = document.querySelector('textarea');
+  let btn = document.querySelectorAll('.add-product');
+  let checkOutBtn = document.querySelector('.checkout')
   let products = {};
-  let btnCheckout = document.querySelector(".checkout");
-  addButtonsArr.forEach((x) => x.addEventListener("click", addHandler));
-  btnCheckout.addEventListener("click", checkOut);
+  let totalSum = 0
 
-  function checkOut(event) {
-    addButtonsArr.forEach((x) => (x.disabled = true));
-    let productNames = Object.keys(products).join(", ");
-    let summary = `You bought ${productNames} for ${totalSum.toFixed(2)}`;
-    textArea.textContent += summary + "\n";
-  }
+  let btnToArr = Array.from(btn)
 
-  function addHandler(e) {
+  checkOutBtn.addEventListener('click', checkOut)
+
+  btnToArr.forEach(element => {
+    element.addEventListener('click', clickBtn);
+  })
+  function clickBtn(e) {
     let element = e.target;
-    let product = element.parentElement.parentElement;
-    let title = product.querySelector(".product-title");
-    let priceDiv = product.querySelector(".product-line-price");
+    let productDiv = element.parentElement.parentElement;
+    let title = productDiv.querySelector('.product-title');
+    let price = productDiv.querySelector('.product-line-price');
     let name = title.textContent;
-    let price = parseFloat(priceDiv.textContent);
-    totalSum += price;
+    let prices = Number(price.textContent);
+    totalSum += prices
     products[name] = true;
-    let message = `Added ${name} for ${price.toFixed(2)} to the cart.`;
-    textArea.textContent += message + "\n";
+    textArea.textContent += `Added ${name} for ${prices.toFixed(2)} to the cart.\n`
+  }
+  function checkOut(e) {
+    btnToArr.forEach(x => x.disabled = 'disabled');
+    let productsNames = Object.keys(products).join(', ')
+    textArea.textContent += `You bought ${productsNames} for ${totalSum.toFixed(2)}.\n`
   }
 }

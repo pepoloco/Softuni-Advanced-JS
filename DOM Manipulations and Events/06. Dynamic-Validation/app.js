@@ -1,14 +1,14 @@
 function validate() {
   let emailInput = document.getElementById("email");
+  let regex = (/^[a-z]+@[a-z]+\.[a-z]+$/)
+  emailInput.addEventListener('input', checkEmail)
 
-  emailInput.addEventListener("change", function () {
+  function checkEmail() {
     let email = emailInput.value.trim();
-    let regex = /^[a-z]+@[a-z]+\.[a-z]+$/;
-
     if (regex.test(email)) {
-      emailInput.classList.remove("error");
+      emailInput.classList.remove('error');
     } else {
-      emailInput.classList.add("error");
+      emailInput.classList.add("error")
     }
-  });
+  }
 }
