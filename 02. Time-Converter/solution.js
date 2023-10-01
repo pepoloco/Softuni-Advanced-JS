@@ -19,14 +19,14 @@ function attachEventsListeners() {
     const hours = document.getElementById('hours');
     const minutes = document.getElementById('minutes');
     const seconds = document.getElementById('seconds');
-    const button = document.querySelectorAll('input[type="button"]');
+
 
     document.querySelector('main').addEventListener('click', onConvert);
 
     function onConvert(e) {
         if (e.target.tagName === "INPUT" && e.target.type === "button") {
             const input = e.target.parentElement.querySelector('input[type="text"]');
-            const inputValue = Number[input.value];
+            const inputValue = Number(input.value);
             const time = convert(inputValue, input.id)
             days.value = time.days;
             hours.value = time.hours;
