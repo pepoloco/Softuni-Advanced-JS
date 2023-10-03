@@ -1,18 +1,19 @@
 function attachEventsListeners() {
-    const cfg = {
+
+    const config = {
         days: 1,
         hours: 24,
         minutes: 1440,
         seconds: 86400,
     };
     function convert(value, unit) {
-        const inDays = value / cfg[unit];
+        const inDays = value / config[unit]
 
         return {
             days: inDays,
-            hours: inDays * cfg.hours,
-            minutes: inDays * cfg.minutes,
-            seconds: inDays * cfg.seconds
+            hours: inDays * config.hours,
+            minutes: inDays * config.minutes,
+            seconds: inDays * config.seconds,
         };
     }
     const days = document.getElementById('days');
@@ -20,10 +21,8 @@ function attachEventsListeners() {
     const minutes = document.getElementById('minutes');
     const seconds = document.getElementById('seconds');
 
-
-    document.querySelector('main').addEventListener('click', onConvert);
-
-    function onConvert(e) {
+    document.querySelector('main').addEventListener('click', onClick);
+    function onClick(e) {
         if (e.target.tagName === "INPUT" && e.target.type === "button") {
             const input = e.target.parentElement.querySelector('input[type="text"]');
             const inputValue = Number(input.value);
@@ -35,4 +34,4 @@ function attachEventsListeners() {
         }
     }
 }
-// One day is equal to 24 hours/1440 minutes/86400 seconds
+attachEventsListeners();// One day is equal to 24 hours/1440 minutes/86400 seconds
