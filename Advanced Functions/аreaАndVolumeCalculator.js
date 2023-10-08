@@ -10,9 +10,9 @@ function solve(area, vol, input) {
   for (const el of parsed) {
     let areaValue = area.call(el);
     let volValue = vol.call(el);
-    result.push({ area: areaValue, volume: vol });
+    result.push({ area: areaValue, volume: volValue });
   }
-  console.log(result);
+  return result
 }
 
 let input = `[

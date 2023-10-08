@@ -1,10 +1,11 @@
 function solve(arr, arg) {
-  if (arg === "asc") {
-    arr.sort((a, b) => a - b);
+  if (arg === 'asc') {
+    return arr.sort((a, b) => a - b);
+  } else if (arg === 'desc') {
+    return arr.sort((a, b) => b - a);
   } else {
-    arr.sort((a, b) => b - a);
+    return;
   }
-  return arr;
 }
 solve([14, 7, 17, 6, 8], "asc");
 solve([14, 7, 17, 6, 8], "desc");

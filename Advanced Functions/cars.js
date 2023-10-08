@@ -1,60 +1,51 @@
-function solve(input) {
-  function cars() {
-    const state = {};
+function solve(commands) {
+  let objects = {};
 
-    function create(name, inherit, parentName) {
-      const obj = {};
-      state[name] = obj;
-      if (inherit) {
-        Object.setPrototypeOf(obj, state[parentName]);
-      }
+  function create(name, parentName) {
+    let obj = {};
+    if (parentName) {
+      obj = Object.create(objects[parentName]);
     }
-
-    function set(name, propName, value) {
-      state[name][propName] = value;
-    }
-
-    function print(name) {
-      const obj = state[name];
-      const props = getAllProperties(obj);
-      console.log(props.map((e) => `${e[0]}:${e[1]}`).join(","));
-    }
-
-    function getAllProperties(obj) {
-      let props = Object.entries(obj);
-      getParentProps(obj);
-      return props;
-
-      function getParentProps(obj) {
-        const prototype = Object.getPrototypeOf(obj);
-        if (Object.getPrototypeOf(prototype)) {
-          let parentProps = Object.entries(prototype);
-          props = props.concat(parentProps);
-          getParentProps(prototype);
-        }
-      }
-    }
-
-    return {
-      create,
-      set,
-      print,
-    };
+    objects[name] = obj;
   }
 
-  let carsProcessor = cars();
+  function set(name, key, value) {
+    let obj = objects[name];
+    obj[key] = value;
+  }
 
-  input.forEach((element) => {
-    let tokens = element.split(" ");
-    carsProcessor[tokens.splice(0, 1)](...tokens);
-  });
+  function print(name) {
+    let obj = objects[name];
+    let result = [];
+    for (let key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        result.push(`${key}:${obj[key]}`);
+      }
+    }
+    console.log(result.join(','));
+  }
+
+  for (let command of commands) {
+    let [action, name, commandType, param] = command.split(' ');
+    if (action === 'create') {
+      if (commandType === 'inherit') {
+        create(name, param);
+      } else {
+        create(name);
+      }
+    } else if (action === 'set') {
+      set(name, commandType, param);
+    } else if (action === 'print') {
+      print(name);
+    }
+  }
 }
 
 solve([
-  "create pesho",
-  "create gosho inherit pesho",
-  "create stamat inherit gosho",
-  "set pesho rank number1",
-  "set gosho nick goshko",
-  "print stamat",
+  'create c1',
+  'create c2 inherit c1',
+  'set c1 color red',
+  'set c2 model new',
+  'print c1',
+  'print c2'
 ]);
