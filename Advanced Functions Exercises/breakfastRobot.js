@@ -31,7 +31,7 @@ function getManager() {
       let errorMsg;
 
       for (let i = 0; i < quantity; i++) {
-        //                          [0 , 1 ] = [key, value]
+        //[0 , 1 ] = [key, value]
         missingElementEntry = Object.entries(receipts[recipe]).find(
           (x) => elements[x[0]] < Number(x[1])
         );
@@ -75,6 +75,3 @@ console.log(manager("restock fat 10")); // Success
 console.log(manager("prepare burger 1")); // Success
 console.log(manager("report")); //'protein=0 carbohydrate=4 fat=3 flavour=5'
 
-function solve(params) {
-  // dictioanry
-}

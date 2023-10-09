@@ -1,23 +1,20 @@
-function solve(...input) {
+function solve(...arguments) {
   let object = {};
-  for (const element of input) {
-    let typeCheck = typeof (element);
-    if (typeCheck === 'string') {
-      object[typeCheck] = element;
-    } else if (typeCheck === 'number') {
-      object[typeCheck] = element;
-    } else if (typeCheck === 'function') {
-      object[typeCheck] = element;
+
+  for (const arg of arguments) {
+    let type = typeof arg;
+    console.log(`${type}: ${arg}`);
+    if (!object[type]) {
+      object[type] = 1;
     } else {
-      return;
+      object[type]++;
     }
   }
-  for (const el of Object.entries(object)) {
-    if (el[0] === 'string') {
-      object[el[0]] += 1
-    }
+  let sortedInfo = Object.entries(object)
+  for (const info of sortedInfo.sort((a, b) => {
+    return b[1] - a[1];
+  })) {
+    console.log(`${info[0]} = ${info[1]}`);
   }
-  console.log(object);
 }
-solve('cat', 42, function () { console.log('Hello world!'); }
-)
+solve('cat', 'cat', {}, 42, 'cat', function () { console.log('Hello world!'); })
