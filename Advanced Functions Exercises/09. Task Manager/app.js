@@ -5,4 +5,10 @@ function solve() {
             return
         }
     }
+    function article(){
+        let article = document.createElement('article');
+        let btnStart = document.createElement('button');
+        let btnDelee = document.createElement('button')
+        article.appendChild(el)
+    }
 }
