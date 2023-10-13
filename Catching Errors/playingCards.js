@@ -14,39 +14,35 @@ function playingCards(face, suit) {
     "K",
     "A",
   ];
-  const validSuits = ["S", "H", "D", "C"];
+  const validSuits = ['S', 'H', 'D', 'C'];
+  const spades = '\u2660';
+  const hearts = '\u2665';
+  const diamonds = '\u2666';
+  const clubs = '\u2663';
+  let card;
   if (!validFaces.includes(face)) {
-    throw new Error("No valid faces:" + face);
+    throw new Error('Invalid Face');
   }
   if (!validSuits.includes(suit)) {
-    throw new Error("No valid suits:" + suit);
+    throw new Error('Invalid Suit');
   }
 
-  const card = {
-    face,
-    suit,
-    toString() {
-      let suitSymbol;
-      switch (suit) {
-        case "S":
-          suitSymbol = "\u2660"; // ♠
-          break;
-        case "H":
-          suitSymbol = "\u2665"; // ♥
-          break;
-        case "D":
-          suitSymbol = "\u2666"; // ♦
-          break;
-        case "C":
-          suitSymbol = "\u2663"; // ♣
-          break;
-        default:
-          suitSymbol = "";
+  for (const suits of validSuits) {
+    if (suits === suit) {
+      card = {
+        face, suit,
+        toString() {
+          switch (suit) {
+            case 'S': return `${this.face}${spades}`;
+            case 'H': return `${this.face}${hearts}`;
+            case 'D': return `${this.face}${diamonds}`;
+            case 'C': return `${this.face}${clubs}`;
+          }
+        }
       }
-      return `${face}${suitSymbol}`;
-    },
-  };
 
-  return card.toString();
+    }
+  }
+  return toString;
 }
 playingCards("A", "S");
